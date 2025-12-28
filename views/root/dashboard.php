@@ -309,6 +309,17 @@ require __DIR__ . '/../layouts/header.php';
         const ctx = document.getElementById('gradeDistChart').getContext('2d');
         if (gradeDistChart) gradeDistChart.destroy();
         
+        // Handle empty data
+        if (!data || !Array.isArray(data) || data.length === 0) {
+            data = [
+                { letter: 'A', count: 0 },
+                { letter: 'B', count: 0 },
+                { letter: 'C', count: 0 },
+                { letter: 'D', count: 0 },
+                { letter: 'F', count: 0 }
+            ];
+        }
+        
         // Define colors based on grade
         const getGradeColor = (grade) => {
             const colors = {
@@ -329,7 +340,7 @@ require __DIR__ . '/../layouts/header.php';
                 labels: data.map(d => d.letter),
                 datasets: [{
                     label: 'Số lượng điểm',
-                    data: data.map(d => parseInt(d.count)),
+                    data: data.map(d => parseInt(d.count || 0)),
                     backgroundColor: bgColors,
                     borderRadius: 5,
                     borderWidth: 1
@@ -397,20 +408,55 @@ require __DIR__ . '/../layouts/header.php';
         const ctx = document.getElementById('facultyChart').getContext('2d');
         if (facultyChart) facultyChart.destroy();
         
+        // Handle empty data
+        if (!faculties || !Array.isArray(faculties) || faculties.length === 0) {
+            facultyChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Không có dữ liệu'],
+                    datasets: [
+                        {
+                            label: 'Sinh viên',
+                            data: [0],
+                            backgroundColor: '#6f42c1',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Bộ môn',
+                            data: [0],
+                            backgroundColor: '#17a2b8',
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+            return;
+        }
+        
         facultyChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: faculties.map(f => f.name),
+                labels: faculties.map(f => f.name || 'N/A'),
                 datasets: [
                     {
                         label: 'Sinh viên',
-                        data: faculties.map(f => f.total_students),
+                        data: faculties.map(f => parseInt(f.total_students || 0)),
                         backgroundColor: '#6f42c1',
                         borderRadius: 4
                     },
                     {
                         label: 'Bộ môn',
-                        data: faculties.map(f => f.total_departments),
+                        data: faculties.map(f => parseInt(f.total_departments || 0)),
                         backgroundColor: '#17a2b8',
                         borderRadius: 4
                     }
@@ -433,24 +479,29 @@ require __DIR__ . '/../layouts/header.php';
         const container = document.getElementById('faculty-list-container');
         container.innerHTML = '';
         
+        if (!faculties || !Array.isArray(faculties) || faculties.length === 0) {
+            container.innerHTML = '<div class="col-12"><div class="alert alert-info text-center"><i class="bi bi-info-circle"></i> Chưa có dữ liệu khoa nào.</div></div>';
+            return;
+        }
+        
         faculties.forEach(faculty => {
             const col = document.createElement('div');
             col.className = 'col-md-4 mb-3';
             col.innerHTML = `
                 <div class="card h-100 hover-shadow transition-all">
                     <div class="card-body">
-                        <h5 class="card-title text-truncate" title="${faculty.name}">
-                            <i class="bi bi-building text-primary"></i> ${faculty.name}
+                        <h5 class="card-title text-truncate" title="${faculty.name || 'N/A'}">
+                            <i class="bi bi-building text-primary"></i> ${faculty.name || 'N/A'}
                         </h5>
                         <hr>
                         <p class="card-text">
                             <div class="d-flex justify-content-between mb-2">
                                 <span><i class="bi bi-people text-success"></i> Sinh viên:</span>
-                                <span class="fw-bold">${faculty.total_students}</span>
+                                <span class="fw-bold">${faculty.total_students || 0}</span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <span><i class="bi bi-book text-info"></i> Bộ môn:</span>
-                                <span class="fw-bold">${faculty.total_departments}</span>
+                                <span class="fw-bold">${faculty.total_departments || 0}</span>
                             </div>
                         </p>
                     </div>
