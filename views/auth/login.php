@@ -33,10 +33,6 @@ require __DIR__ . '/../layouts/header.php';
                             <i class="bi bi-box-arrow-in-right"></i> Đăng nhập
                         </button>
                     </form>
-                    
-                    <div class="text-center mt-3">
-                        <small class="text-muted">Mật khẩu mặc định: 123456</small>
-                    </div>
                 </div>
             </div>
         </div>

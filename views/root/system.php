@@ -13,7 +13,7 @@ require __DIR__ . '/../layouts/header.php';
                         <h5>Reset mật khẩu hàng loạt</h5>
                         <div class="mb-3">
                             <label for="new_password" class="form-label">Mật khẩu mới</label>
-                            <input type="text" class="form-control" id="new_password" name="new_password" value="123456">
+                            <input type="text" class="form-control" id="new_password" name="new_password" placeholder="Nhập mật khẩu mới">
                         </div>
                     </div>
                 </div>
