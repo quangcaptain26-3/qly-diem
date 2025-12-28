@@ -1,0 +1,229 @@
+# ============================================
+# .gitignore cho Hệ thống Quản lý Điểm Đại học
+# ============================================
+
+# ============================================
+# File cấu hình nhạy cảm
+# ============================================
+# Không commit thông tin database thực tế
+# Giữ file database.php.example thay thế
+config/database.php
+*.env
+.env.local
+.env.*.local
+
+# ============================================
+# File log và debug
+# ============================================
+*.log
+logs/
+*.log.*
+error_log
+debug.log
+php_errors.log
+
+# ============================================
+# File tạm và cache
+# ============================================
+*.tmp
+*.temp
+*.cache
+cache/
+tmp/
+temp/
+*.swp
+*.swo
+*~
+
+# ============================================
+# File upload và user-generated content
+# ============================================
+uploads/
+files/
+storage/
+public/uploads/
+public/files/
+*.xlsx
+*.xls
+*.pdf
+!libs/simplexlsx/examples/*.xlsx
+!libs/simplexlsxgen/*.png
+
+# ============================================
+# Composer
+# ============================================
+/vendor/
+composer.lock
+composer.phar
+
+# ============================================
+# Node.js và npm (nếu có)
+# ============================================
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# ============================================
+# File backup và database dump
+# ============================================
+*.sql
+*.dump
+*.bak
+*.backup
+*.old
+!database.sql
+!insert_scores_attendances.txt
+
+# ============================================
+# File hệ điều hành
+# ============================================
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================
+# IDE và Editor
+# ============================================
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# PhpStorm / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# NetBeans
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Eclipse
+.project
+.classpath
+.settings/
+.metadata
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+Session.vim
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ============================================
+# File build và compiled
+# ============================================
+build/
+dist/
+*.min.js
+*.min.css
+*.map
+
+# ============================================
+# File test và coverage
+# ============================================
+/tests/coverage/
+.phpunit.result.cache
+.phpunit.cache
+
+# ============================================
+# File session
+# ============================================
+sessions/
+*.session
+
+# ============================================
+# File cấu hình local
+# ============================================
+config.local.php
+local_config.php
+
+# ============================================
+# File InfinityFree / Hosting
+# ============================================
+.htpasswd
+.htaccess.backup
+
+# ============================================
+# File tài liệu tạm
+# ============================================
+*.docx
+*.doc
+*.odt
+!thiết_kế_phần_mềm_quản_ly_diểm_dại_học.txt
+
+# ============================================
+# File archive
+# ============================================
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# ============================================
+# File database local
+# ============================================
+*.db
+*.sqlite
+*.sqlite3
+
+# ============================================
+# File PHP specific
+# ============================================
+php_errors.log
+php-fpm.log
+
+# ============================================
+# File security
+# ============================================
+.htpasswd
+.htaccess.local
+
+# ============================================
+# File tùy chỉnh (thêm vào đây nếu cần)
+# ============================================
+
